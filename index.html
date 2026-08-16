@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#080a12">
+
+    <title>Legally Distinct</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="top-bar">
+
+        <div class="logo">
+            <div class="logo-mark">⚖</div>
+
+            <div>
+                <div class="logo-title">
+                    LEGALLY DISTINCT
+                </div>
+
+                <div class="logo-subtitle">
+                    CREATE SOMETHING NEW
+                </div>
+            </div>
+        </div>
+
+        <button
+            id="rulesButton"
+            class="rules-button"
+            aria-label="Open rules"
+        >
+            ⓘ
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN GAME
+    ========================== -->
+
+    <main class="game-container">
+
+        <section id="gameScreen">
+
+            <!-- GAME HEADER -->
+
+            <div class="game-header">
+
+                <div>
+                    <div class="small-label">
+                        LEVEL
+                    </div>
+
+                    <div
+                        id="levelNumber"
+                        class="level-number"
+                    >
+                        1
+                    </div>
+                </div>
+
+                <div class="header-stats">
+
+                    <div class="meta-item">
+                        <div class="small-label">
+                            STREAK
+                        </div>
+
+                        <div
+                            id="streakNumber"
+                            class="meta-value"
+                        >
+                            0
+                        </div>
+                    </div>
+
+                    <div class="meta-item">
+                        <div class="small-label">
+                            BEST
+                        </div>
+
+                        <div
+                            id="bestLevelNumber"
+                            class="meta-value"
+                        >
+                            1
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    id="timer"
+                    class="timer"
+                >
+                    <span class="timer-icon">⏱</span>
+
+                    <span id="timerNumber">
+                        60
+                    </span>
+
+                    <span class="timer-seconds">
+                        SEC
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-bar">
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                ></div>
+            </div>
+
+
+            <!-- CHALLENGE -->
+
+            <section class="challenge-section">
+
+                <div class="section-label">
+                    YOUR CHALLENGE
+                </div>
+
+                <div class="challenge-card">
+
+                    <div
+                        id="category"
+                        class="category"
+                    >
+                        SUPERHERO
+                    </div>
+
+                    <h1 id="prompt">
+                        Loading challenge...
+                    </h1>
+
+                    <div
+                        id="challengeLog"
+                        class="challenge-log"
+                    >
+                        ROUND LOG: Level 1 • ROOKIE • 60s • Phair is reading for weak originality.
+                    </div>
+
+                    <div
+                        id="roundModifier"
+                        class="round-modifier"
+                    >
+                        DIFFICULTY: ROOKIE • Keep the idea clear and easy to understand.
+                    </div>
+
+                    <div class="reference">
+                        Inspired by
+                        <strong id="reference">
+                            Spider-Man
+                        </strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PHAIR -->
+
+            <section class="phair-section">
+
+                <div class="section-label">
+                    PHAIR HUGHES
+                </div>
+
+                <div class="phair-card">
+
+                    <div class="phair-header">
+
+                        <div class="phair-avatar">
+                            PH
+                        </div>
+
+                        <div>
+                            <div class="phair-name">
+                                Phair Hughes
+                            </div>
+
+                            <div class="phair-level">
+                                YOUR OPPONENT
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <p id="phairAnswer">
+                        Loading...
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- PLAYER -->
+
+            <section class="creation-section">
+
+                <div class="section-label">
+                    YOUR CREATION
+                </div>
+
+                <div class="input-wrapper">
+
+                    <textarea
+                        id="playerAnswer"
+                        placeholder="Describe your creation..."
+                        maxlength="500"
+                        spellcheck="true"
+                    ></textarea>
+
+                </div>
+
+                <div class="input-hint">
+                    Make it original. Make it interesting.
+                </div>
+
+            </section>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                id="submitButton"
+                class="submit-button"
+            >
+                <span>
+                    SUBMIT CREATION
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             RESULTS
+        ========================== -->
+
+        <section
+            id="resultsScreen"
+            class="hidden"
+        >
+
+            <div class="results-header">
+
+                <div class="small-label">
+                    ROUND COMPLETE
+                </div>
+
+                <h1 id="winner">
+                    YOU WIN
+                </h1>
+
+            </div>
+
+
+            <div id="results"></div>
+
+
+            <div class="verdict">
+
+                <div class="verdict-icon">
+                    ⚖
+                </div>
+
+                <div>
+
+                    <div class="verdict-title">
+                        PHAIR'S VERDICT
+                    </div>
+
+                    <p id="verdictText"></p>
+
+                </div>
+
+            </div>
+
+
+            <div class="scoreboard">
+
+                <div class="score-item">
+
+                    <span>
+                        YOU
+                    </span>
+
+                    <strong id="playerWins">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="score-item">
+
+                    <span>
+                        TIES
+                    </span>
+
+                    <strong id="ties">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="score-item">
+
+                    <span>
+                        PHAIR
+                    </span>
+
+                    <strong id="phairWins">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="nextButton"
+                class="submit-button"
+            >
+                <span>
+                    NEXT ROUND
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL SCREEN
+        ========================== -->
+
+        <section
+            id="finalScreen"
+            class="hidden"
+        >
+
+            <div class="final-screen">
+
+                <div class="final-icon">
+                    🏆
+                </div>
+
+                <div class="small-label">
+                    GAME COMPLETE
+                </div>
+
+                <h1>
+                    The challenge is over.
+                </h1>
+
+                <p>
+                    Here's how you did against Phair.
+                </p>
+
+                <div
+                    id="finalScore"
+                    class="final-score"
+                ></div>
+
+                <button
+                    id="restartButton"
+                    class="submit-button"
+                >
+                    <span>
+                        PLAY AGAIN
+                    </span>
+
+                    <span class="arrow">
+                        ↻
+                    </span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         RULES MODAL
+    ========================== -->
+
+    <div
+        id="rulesModal"
+        class="modal hidden"
+    >
+
+        <div class="rules-panel">
+
+            <button
+                id="closeRules"
+                class="close-rules"
+            >
+                ×
+            </button>
+
+
+            <div class="small-label">
+                HOW TO PLAY
+            </div>
+
+            <h1>
+                The Rules
+            </h1>
+
+
+            <div class="rule">
+
+                <div class="rule-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h2>
+                        Get inspired
+                    </h2>
+
+                    <p>
+                        Each round gives you a real,
+                        copyrighted character, team,
+                        or fictional concept as inspiration.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-number">
+                    02
+                </div>
+
+                <div>
+
+                    <h2>
+                        Create something different
+                    </h2>
+
+                    <p>
+                        Create your own character, team,
+                        or concept inspired by the reference
+                        while changing its distinctive
+                        characteristics.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-number">
+                    03
+                </div>
+
+                <div>
+
+                    <h2>
+                        Beat Phair
+                    </h2>
+
+                    <p>
+                        Phair Hughes creates his own answer.
+                        Your creation is compared with his.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-number">
+                    04
+                </div>
+
+                <div>
+
+                    <h2>
+                        Beat the clock
+                    </h2>
+
+                    <p>
+                        You have 60 seconds to create
+                        your answer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="legal-note">
+
+                <strong>
+                    ⚠ LEGAL NOTE
+                </strong>
+
+                <p>
+                    "Legally distinct" is a gameplay concept
+                    used by this game. It is not a universal
+                    legal test and this game does not provide
+                    legal advice.
+                </p>
+
+                <p>
+                    Actual copyright questions depend on the
+                    specific facts and applicable law.
+                </p>
+
+            </div>
+
+
+            <button
+                id="closeRulesBottom"
+                class="rules-done"
+            >
+                GOT IT
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="game.js"></script>
+
+</body>
+</html>
